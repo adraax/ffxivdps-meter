@@ -1,0 +1,16 @@
+{
+  "$schema": "../../../../../node_modules/nx-electron/src/validation/packager.schema.json",
+  "prune": true,
+  "executableName": "FFXIV DPS Meter",
+  "appCopyright": "Copyright (c) Adraax. All rights reserved.",
+  "ignore": [
+    "tools",
+    "libs",
+    "dist/apps/cypress",
+    "(angular|nx)\\.json",
+    "\\.vscode",
+    "\\.yarn",
+    "node_modules"
+  ],
+  "ignoreSourceMap": true
+}

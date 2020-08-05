@@ -25,7 +25,9 @@
               "apps/ffxivdps-meter-front/src/favicon.ico",
               "apps/ffxivdps-meter-front/src/assets"
             ],
-            "styles": ["apps/ffxivdps-meter-front/src/styles.scss"],
+            "styles": [
+              "apps/ffxivdps-meter-front/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -83,7 +85,10 @@
               "apps/ffxivdps-meter-front/tsconfig.app.json",
               "apps/ffxivdps-meter-front/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/ffxivdps-meter-front/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/ffxivdps-meter-front/**/*"
+            ]
           }
         },
         "test": {
@@ -118,11 +123,91 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["apps/ffxivdps-meter-front-e2e/tsconfig.e2e.json"],
+            "tsConfig": [
+              "apps/ffxivdps-meter-front-e2e/tsconfig.e2e.json"
+            ],
             "exclude": [
               "**/node_modules/**",
               "!apps/ffxivdps-meter-front-e2e/**/*"
             ]
+          }
+        }
+      }
+    },
+    "ffxivdps-meter-app": {
+      "root": "apps/ffxivdps-meter-app",
+      "sourceRoot": "apps/ffxivdps-meter-app/src",
+      "projectType": "application",
+      "prefix": "ffxivdps-meter-app",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "nx-electron:build",
+          "options": {
+            "outputPath": "dist/apps/ffxivdps-meter-app",
+            "main": "apps/ffxivdps-meter-app/src/main.ts",
+            "tsConfig": "apps/ffxivdps-meter-app/tsconfig.app.json",
+            "assets": [
+              "apps/ffxivdps-meter-app/src/assets"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "obfuscate": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/ffxivdps-meter-app/src/environments/environment.ts",
+                  "with": "apps/ffxivdps-meter-app/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "nx-electron:execute",
+          "options": {
+            "buildTarget": "ffxivdps-meter-app:build"
+          }
+        },
+        "package": {
+          "builder": "nx-electron:package",
+          "options": {
+            "name": "ffxivdps-meter-app",
+            "frontendProject": "ffxivdps-meter-front",
+            "out": "dist/packages"
+          }
+        },
+        "make": {
+          "builder": "nx-electron:make",
+          "options": {
+            "name": "ffxivdps-meter-app",
+            "frontendProject": "ffxivdps-meter-front",
+            "out": "dist/executables"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "tsConfig": [
+              "apps/ffxivdps-meter-app/tsconfig.app.json",
+              "apps/ffxivdps-meter-app/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/ffxivdps-meter-app/**/*"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/ffxivdps-meter-app/jest.config.js",
+            "tsConfig": "apps/ffxivdps-meter-app/tsconfig.spec.json",
+            "passWithNoTests": true
           }
         }
       }
