@@ -1,0 +1,144 @@
+{
+  "version": 1,
+  "projects": {
+    "ffxivdps-meter-front": {
+      "projectType": "application",
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "apps/ffxivdps-meter-front",
+      "sourceRoot": "apps/ffxivdps-meter-front/src",
+      "prefix": "ffxivdps-meter",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/ffxivdps-meter-front",
+            "index": "apps/ffxivdps-meter-front/src/index.html",
+            "main": "apps/ffxivdps-meter-front/src/main.ts",
+            "polyfills": "apps/ffxivdps-meter-front/src/polyfills.ts",
+            "tsConfig": "apps/ffxivdps-meter-front/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "apps/ffxivdps-meter-front/src/favicon.ico",
+              "apps/ffxivdps-meter-front/src/assets"
+            ],
+            "styles": ["apps/ffxivdps-meter-front/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/ffxivdps-meter-front/src/environments/environment.ts",
+                  "with": "apps/ffxivdps-meter-front/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "ffxivdps-meter-front:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "ffxivdps-meter-front:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "ffxivdps-meter-front:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/ffxivdps-meter-front/tsconfig.app.json",
+              "apps/ffxivdps-meter-front/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!apps/ffxivdps-meter-front/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/ffxivdps-meter-front/jest.config.js",
+            "tsConfig": "apps/ffxivdps-meter-front/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "apps/ffxivdps-meter-front/src/test-setup.ts"
+          }
+        }
+      }
+    },
+    "ffxivdps-meter-front-e2e": {
+      "root": "apps/ffxivdps-meter-front-e2e",
+      "sourceRoot": "apps/ffxivdps-meter-front-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/ffxivdps-meter-front-e2e/cypress.json",
+            "tsConfig": "apps/ffxivdps-meter-front-e2e/tsconfig.e2e.json",
+            "devServerTarget": "ffxivdps-meter-front:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "ffxivdps-meter-front:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["apps/ffxivdps-meter-front-e2e/tsconfig.e2e.json"],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/ffxivdps-meter-front-e2e/**/*"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "defaultCollection": "@nrwl/angular"
+  },
+  "schematics": {
+    "@nrwl/angular:application": {
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "unitTestRunner": "jest"
+    }
+  },
+  "defaultProject": "ffxivdps-meter-front"
+}
