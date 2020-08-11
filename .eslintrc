@@ -1,4 +1,3 @@
-
 {
   "root": true,
   "parser": "@typescript-eslint/parser",
@@ -26,7 +25,10 @@
         "enforceBuildableLibDependency": true,
         "allow": [],
         "depConstraints": [
-          { "sourceTag": "*", "onlyDependOnLibsWithTags": ["*"] }
+          {
+            "sourceTag": "*",
+            "onlyDependOnLibsWithTags": ["*"]
+          }
         ]
       }
     ]
