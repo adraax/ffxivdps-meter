@@ -2,7 +2,13 @@
   "$schema": "../../../../../node_modules/nx-electron/src/validation/maker.schema.json",
   "productName": "FFXIV DPS Meter",
   "copyright": "Copyright © 2020 Adraax",
-  "dmg": {
-    "sign": false
+  "win": {
+    "target": "nsis"
+  },
+  "publish": {
+    "provider": "github",
+    "owner": "adraax",
+    "repo": "ffxivdps-meter",
+    "releaseType": "prerelease"
   }
 }

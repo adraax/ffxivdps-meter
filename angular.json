@@ -185,7 +185,9 @@
           "options": {
             "name": "ffxivdps-meter-app",
             "frontendProject": "ffxivdps-meter-front",
-            "out": "dist/executables"
+            "out": "dist/executables",
+            "platform": "windows",
+            "publishPolicy": "always"
           }
         },
         "lint": {
